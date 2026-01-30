@@ -1,0 +1,27 @@
+(gdb) l 1,14
+1       #include <iostream>
+2       using namespace std;
+3
+4       class Test {
+5       public:
+6           virtual void vfunc1() {}
+7           virtual void vfunc2() {}
+8           virtual void vfunc3() {}
+9           void func1() {}
+10          void func2() {}
+11      };
+12
+13      int main() {
+14          Test t;  // 新增：显式定义Test对象t（关键！让编译器生成完整符号）
+(gdb)  x/3xg 0x555555557d58
+0x555555557d58 <_ZTV4Test+16>:  0x00005555555552d4      0x00005555555552e4
+0x555555557d68 <_ZTV4Test+32>:  0x00005555555552f4
+(gdb) p t
+$3 = {_vptr.Test = 0x555555557d58 <vtable for Test+16>}
+(gdb) info symbol 0x00005555555552d4
+Test::vfunc1() in section .text of /home/ubuntu20/opt/linux_sdk/kernel/test/a.out
+(gdb) info symbol 0x00005555555552e4
+Test::vfunc2() in section .text of /home/ubuntu20/opt/linux_sdk/kernel/test/a.out
+(gdb) info symbol 0x00005555555552f4
+Test::vfunc3() in section .text of /home/ubuntu20/opt/linux_sdk/kernel/test/a.out
+(gdb)
