@@ -25,3 +25,9 @@ Test::vfunc2() in section .text of /home/ubuntu20/opt/linux_sdk/kernel/test/a.ou
 (gdb) info symbol 0x00005555555552f4
 Test::vfunc3() in section .text of /home/ubuntu20/opt/linux_sdk/kernel/test/a.out
 (gdb)
+
+(gdb) info vtbl t
+vtable for 'Test' @ 0x555555557d58 (subobject @ 0x7fffffffe050):
+[0]: 0x5555555552d4 <Test::vfunc1()>
+[1]: 0x5555555552e4 <Test::vfunc2()>
+[2]: 0x5555555552f4 <Test::vfunc3()>
